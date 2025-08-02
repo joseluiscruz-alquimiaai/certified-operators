@@ -1,0 +1,98 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.11.1
+  creationTimestamp: null
+  name: alquimiaassistants.runtime.alquimia.ai
+spec:
+  group: runtime.alquimia.ai
+  names:
+    kind: AlquimiaAssistant
+    listKind: AlquimiaAssistantList
+    plural: alquimiaassistants
+    singular: alquimiaassistant
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: AlquimiaAssistant is the Schema for the alquimiaassistants API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: AlquimiaAssistantSpec defines the desired state of AlquimiaAssistant
+            properties:
+              agents:
+                description: Agents allows arbitrary JSON content for agent selectors
+                x-kubernetes-preserve-unknown-fields: true
+              attachments:
+                description: Attachments define the assistant's document processing
+                  configuration (chunking, retriever, embeddings, etc).
+                x-kubernetes-preserve-unknown-fields: true
+              configRef:
+                description: ConfigRef refers to an AlquimiaConfig
+                properties:
+                  name:
+                    description: Nombre del recurso AlquimiaConfig a usar
+                    type: string
+                required:
+                - name
+                type: object
+              dante:
+                description: Dante contains configuration and profile (can change
+                  frequently)
+                x-kubernetes-preserve-unknown-fields: true
+              description:
+                default: No description provided
+                description: Description provides a summary of the assistant's purpose.
+                type: string
+              empathy:
+                description: Empathy defines additional behavior or constraints for
+                  the assistant’s response strategy.
+                x-kubernetes-preserve-unknown-fields: true
+              experts:
+                description: Experts allows dynamic expert model configuration
+                x-kubernetes-preserve-unknown-fields: true
+              nickname:
+                default: Unnamed Assistant
+                description: 'Nickname is a friendly display name for the assistant.
+                  Example: "Alquimia First Line Support"'
+                type: string
+              tags:
+                default:
+                - general
+                description: 'Tags are optional labels that help categorize the assistant.
+                  Example: ["customer-faced", "support"]'
+                items:
+                  type: string
+                type: array
+              tools:
+                description: Tools allows dynamic key/value tools definition
+                x-kubernetes-preserve-unknown-fields: true
+            type: object
+          status:
+            description: AlquimiaAssistantStatus defines the observed state of AlquimiaAssistant
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: null
+  storedVersions: null
