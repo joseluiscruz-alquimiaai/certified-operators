@@ -47,7 +47,7 @@ metadata:
     features.operators.openshift.io/fips-compliant: "false"
     features.operators.openshift.io/proxy-aware: "true"
     features.operators.openshift.io/tls-profiles: "true"
-  name: alquimia-operator.v0.0.1
+  name: alquimia-operator.v1.0.0
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -289,7 +289,7 @@ spec:
   maturity: alpha
   provider:
     name: alquimiaai
-  version: 0.0.1
+  version: 1.0.0
   minKubeVersion: "1.26.0"
   relatedImages:
     - image: registry.redhat.io/openshift4/ose-kube-rbac-proxy@sha256:9b7aabfbead92df3a4afeb1854e45a92f23da52321d1705fce444510fa856145
